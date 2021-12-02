@@ -2,7 +2,7 @@
 
 ## Architecture
 
-![image](k8s/Documentation_Images/Building a Kubernetes 1.22 Cluster with kubeadm.png)
+![image](k8s/Documentation_Images/Building_Kubernetes_1-22_Cluster_with_kubeadm.png)
 
 
 ## Install Packages
