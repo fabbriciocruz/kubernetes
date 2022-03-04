@@ -123,7 +123,8 @@ For example: A t3.small can have 3 ENIs and each one of its ENI can have 4 IP ad
         ```
 
 6. Configure the parameter WARM_PREFIX_TARGET.<br>
-If the EKS Cluster version is 1.21 or later the parameter WARM_PREFIX_TARGET is configured to 1 by default
+
+    If the EKS Cluster version is 1.21 or later the parameter WARM_PREFIX_TARGET is configured to 1 by default
 
     * Check if the parameter WARM_PREFIX_TARGET has been set
 
