@@ -168,7 +168,8 @@ If the EKS Cluster version is 1.21 or later the parameter WARM_PREFIX_TARGET is 
 5. Describe one of the nodes to determine the max pods for the node.
 
     ```sh
-    kubectl describe node <NodeName> ip-192-168-22-103.us-west-2.compute.internal
+    kubectl get nodes
+    kubectl describe node <NodeName>
     ```
 
     Output:
