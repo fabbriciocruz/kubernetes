@@ -53,7 +53,7 @@ For example: A t3.small can have 3 ENIs and each one of its ENI can have 4 IP ad
 
 ## Considerations
 
-* This HowTo has been validated with a t3.small EC2 instance as EKS Node in sa-east-1 region
+* This HowTo has been validated with a t3.small EC2 instance running on an EKS Cluster Version 1.21 sa-east-1 region.
 
 ## Prerequisites
 
