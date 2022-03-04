@@ -142,7 +142,7 @@ The Cluster and all its resources have been created using the [eksctl](https://e
     maxPodsPerNode: 110
     ```
 
-    The following is an exemple of a NodeGroup config file:
+    The following is an example of a NodeGroup config file:
     
     ```sh
     apiVersion: eksctl.io/v1alpha5
