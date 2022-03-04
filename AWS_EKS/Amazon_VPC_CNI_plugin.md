@@ -1,5 +1,5 @@
 
-# Amazon VPC CNI plugin (Amazon EKS): Increase the amount of available IP addresses for your Amazon EC2 nodes
+# Amazon VPC CNI plugin: Increase the amount of available IP addresses for your Amazon EC2 nodes
 
 ## Documentation
 
@@ -205,7 +205,7 @@ For example: A t3.small can have 3 ENIs and each one of its ENI can have 4 IP ad
 
 * [Architecting Kubernetes clusters — choosing a worker node size](https://learnk8s.io/kubernetes-node-size#:~:text=On%20Amazon%20Elastic%20Kubernetes%20Service,of%20the%20type%20of%20node)
 
-
+<!---
 ## The reason why we should not set the `WARM_IP_TARGET` parameter on the step xxx of the HowTo topic
 From [Add additional documentation around IPs and ENIs](https://github.com/mogren/amazon-vpc-cni-k8s/commit/7f40d80b77859ba8854d997690cabc69ea645612)
 
@@ -226,7 +226,8 @@ From [Trouble understanding WARM_IP_TARGET, WARM_ENI and MINIMUM_IP_TARGET
 Regarding MINIMUM_IP_TARGET and WARM_IP_TARGET - Say suppose I will be deploying 10 pods on each node and if I set WARM_IP_TARGET to 10. Then when 10 pods are allocated, CNI tries to allocate another 10 IPs which might never be used. Hence we can set MINIMUM_IP_TARGET to 10 (based on number of pods) and WARM_IP_TARGET to maybe 2 or 3. Now we can deploy 10 pods (since MINIMUM_IP_TARGET sets the floor on number of IPs) and CNI would allocate an additional WARM_IP_TARGET number of IPs. Whereas WARM_ENI_TARGET specifies the number of ENIs to be kept in reserve (if available) for pod assignment.
 
 
-## How to update a nodeGroup
+How to update a nodeGroup
  5809  eksctl create nodegroup --config-file=Nodegroup-new.yaml 
  5810  kubectl get nodes
  5811  eksctl delete nodegroup --cluster eks-rancher-server --name nodegrp-eks-rancher-server
+--->
