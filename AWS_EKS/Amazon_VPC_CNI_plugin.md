@@ -138,7 +138,7 @@ For example: A t3.small can have 3 ENIs and each one of its ENI can have 4 IP ad
 7. Add the following parameter to your NodeGroup config file
 
     ```sh
-    maxPodsPerNode: 80
+    maxPodsPerNode: 110
     ```
 
     The followind is an exemple of a NodeGroup config file:
