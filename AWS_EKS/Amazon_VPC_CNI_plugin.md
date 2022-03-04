@@ -168,8 +168,31 @@ The Cluster and all its resources have been created using the [eksctl](https://e
 8. Create a new EKS Managed Node Group
 
     ```sh
-    eksctl create nodegroup -f <NodeGroupConfigFile>
+    eksctl create nodegroup --config-file= <NodeGroupConfigFile.yaml>
     ```
+    
+    **Note ([Managing NodeGroups](https://eksctl.io/usage/managing-nodegroups/)):** By design, nodegroups are immutable. This means that if you need to change something (other than scaling) like the AMI or the instance type of a nodegroup, you would need to create a new nodegroup with the desired changes, move the load and delete the old one.  
+
+    1. Create a new managed node group
+
+        ```sh
+        eksctl create nodegroup --config-file= <NodeGroupConfigFile.yaml>
+        ```
+
+    2. Check if it is ok
+
+        ```sh
+        kubectl get nodes
+        ```
+    
+    3. Delete the old managed node group
+
+        ```sh
+        eksctl delete nodegroup --cluster <EksClusterName> --name <NodegrpName>
+        ```
+
+        It will drain all pods from the old NodeGroup to the new NodeGroup
+
 
 9. Describe one of the nodes to determine the max pods for the node
 
@@ -230,10 +253,3 @@ From [Trouble understanding WARM_IP_TARGET, WARM_ENI and MINIMUM_IP_TARGET
 WARM_IP_TARGET or MINIMUM_IP_TARGET – If either value is set, it overrides any value set for WARM_PREFIX_TARGET.
 
 Regarding MINIMUM_IP_TARGET and WARM_IP_TARGET - Say suppose I will be deploying 10 pods on each node and if I set WARM_IP_TARGET to 10. Then when 10 pods are allocated, CNI tries to allocate another 10 IPs which might never be used. Hence we can set MINIMUM_IP_TARGET to 10 (based on number of pods) and WARM_IP_TARGET to maybe 2 or 3. Now we can deploy 10 pods (since MINIMUM_IP_TARGET sets the floor on number of IPs) and CNI would allocate an additional WARM_IP_TARGET number of IPs. Whereas WARM_ENI_TARGET specifies the number of ENIs to be kept in reserve (if available) for pod assignment.
-
-<!---
-How to update a nodeGroup
- 5809  eksctl create nodegroup --config-file=Nodegroup-new.yaml 
- 5810  kubectl get nodes
- 5811  eksctl delete nodegroup --cluster eks-rancher-server --name nodegrp-eks-rancher-server
---->
