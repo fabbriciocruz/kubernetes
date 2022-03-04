@@ -191,9 +191,6 @@ The Cluster and all its resources have been created using the [eksctl](https://e
         eksctl delete nodegroup --cluster <EksClusterName> --name <NodegrpName>
         ```
 
-        It will drain all pods from the old NodeGroup to the new NodeGroup
-
-
 9. Describe one of the nodes to determine the max pods for the node
 
     ```sh
