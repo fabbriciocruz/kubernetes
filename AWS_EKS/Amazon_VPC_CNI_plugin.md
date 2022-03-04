@@ -53,7 +53,8 @@ For example: A t3.small can have 3 ENIs and each one of its ENI can have 4 IP ad
 
 ## Considerations
 
-* This HowTo has been validated with a t3.small EC2 instance running on an EKS Cluster Version 1.21 sa-east-1 region.
+* This HowTo has been validated with a t3.small EC2 instance running on an EKS Cluster Version 1.21 sa-east-1 region.  
+The Cluster and all its resources have been created using the [eksctl](https://eksctl.io/) command
 
 ## Prerequisites
 
@@ -164,7 +165,13 @@ For example: A t3.small can have 3 ENIs and each one of its ENI can have 4 IP ad
         privateNetworking: true # This must be set to 'true' when only 'Private' subnets has been configured on the EKS Cluster config file
     ```
 
-8. Describe one of the nodes to determine the max pods for the node
+8. Create a new EKS Managed Node Group
+
+    ```sh
+    eksctl create nodegroup -f <NodeGroupConfigFile>
+    ```
+
+9. Describe one of the nodes to determine the max pods for the node
 
     ```sh
     kubectl get nodes
