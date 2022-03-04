@@ -106,8 +106,9 @@ For example: A t3.small can have 3 ENIs and each one of its ENI can have 4 IP ad
 
 4. (Optional, but recommended) The Amazon VPC CNI add-on configured with its own IAM role that has the necessary IAM policy attached to it. For more information, see [Configuring the Amazon VPC CNI plugin to use IAM roles for service accounts](https://docs.aws.amazon.com/eks/latest/userguide/cni-iam-role.html)
 
-5. Enable the parameter to assign prefixes to network interfaces for the Amazon VPC CNI Daemonset (ENABLE_PREFIX_DELEGATION).<br> 
-If the EKS Cluster version is 1.21 or later the parameter ENABLE_PREFIX_DELEGATION is true by default.
+5. Enable the parameter to assign prefixes to network interfaces for the Amazon VPC CNI Daemonset (ENABLE_PREFIX_DELEGATION)<br>
+
+    If the EKS Cluster version is 1.21 or later the parameter ENABLE_PREFIX_DELEGATION is true by default
 
     * Check if the parameter ENABLE_PREFIX_DELEGATION has been set
 
@@ -122,7 +123,7 @@ If the EKS Cluster version is 1.21 or later the parameter ENABLE_PREFIX_DELEGATI
         ```
 
 6. Configure the parameter WARM_PREFIX_TARGET.<br>
-If the EKS Cluster version is 1.21 or later the parameter WARM_PREFIX_TARGET is configured to 1 by default.
+If the EKS Cluster version is 1.21 or later the parameter WARM_PREFIX_TARGET is configured to 1 by default
 
     * Check if the parameter WARM_PREFIX_TARGET has been set
 
@@ -165,7 +166,7 @@ If the EKS Cluster version is 1.21 or later the parameter WARM_PREFIX_TARGET is 
         privateNetworking: true # This must be set to 'true' when only 'Private' subnets has been configured on the EKS Cluster config file
     ```
 
-8. Describe one of the nodes to determine the max pods for the node.
+8. Describe one of the nodes to determine the max pods for the node
 
     ```sh
     kubectl get nodes
