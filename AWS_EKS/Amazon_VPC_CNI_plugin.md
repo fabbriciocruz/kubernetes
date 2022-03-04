@@ -90,7 +90,7 @@ For example: A t3.small can have 3 ENIs and each one of its ENI can have 4 IP ad
 
     If your version is earlier than 1.9.0, then you must update it. For more information, see the updating sections of [Managing the Amazon VPC CNI add-on](https://docs.aws.amazon.com/eks/latest/userguide/managing-vpc-cni.html)
 
-2. Enable the parameter to assign prefixes to network interfaces for the Amazon VPC CNI Daemonset. When you deploy a 1.21 or later cluster, version 1.10.1 or later of the VPC CNI add-on is deployed with it, and this setting is true by default.
+3. Enable the parameter to assign prefixes to network interfaces for the Amazon VPC CNI Daemonset. When you deploy a 1.21 or later cluster, version 1.10.1 or later of the VPC CNI add-on is deployed with it, and this setting is true by default.
 
     * Check if the parameter is enabled
 
@@ -104,9 +104,9 @@ For example: A t3.small can have 3 ENIs and each one of its ENI can have 4 IP ad
         kubectl set env daemonset aws-node -n kube-system ENABLE_PREFIX_DELEGATION=true
         ```
 
-3. (Optional, but recommended) The Amazon VPC CNI add-on configured with its own IAM role that has the necessary IAM policy attached to it. For more information, see [Configuring the Amazon VPC CNI plugin to use IAM roles for service accounts](https://docs.aws.amazon.com/eks/latest/userguide/cni-iam-role.html)
+4. (Optional, but recommended) The Amazon VPC CNI add-on configured with its own IAM role that has the necessary IAM policy attached to it. For more information, see [Configuring the Amazon VPC CNI plugin to use IAM roles for service accounts](https://docs.aws.amazon.com/eks/latest/userguide/cni-iam-role.html)
 
-4. Enable the parameter to assign prefixes to network interfaces for the Amazon VPC CNI Daemonset (ENABLE_PREFIX_DELEGATION).<br> 
+5. Enable the parameter to assign prefixes to network interfaces for the Amazon VPC CNI Daemonset (ENABLE_PREFIX_DELEGATION).<br> 
 If the EKS Cluster version is 1.21 or later the parameter ENABLE_PREFIX_DELEGATION is true by default.
 
     * Check if the parameter ENABLE_PREFIX_DELEGATION has been set
@@ -121,7 +121,7 @@ If the EKS Cluster version is 1.21 or later the parameter ENABLE_PREFIX_DELEGATI
         kubectl describe daemonset -n kube-system aws-node | grep -in ENABLE_PREFIX_DELEGATION
         ```
 
-5. Configure the parameter WARM_PREFIX_TARGET.<br>
+6. Configure the parameter WARM_PREFIX_TARGET.<br>
 If the EKS Cluster version is 1.21 or later the parameter WARM_PREFIX_TARGET is configured to 1 by default.
 
     * Check if the parameter WARM_PREFIX_TARGET has been set
@@ -136,7 +136,7 @@ If the EKS Cluster version is 1.21 or later the parameter WARM_PREFIX_TARGET is 
         kubectl set env daemonset aws-node -n kube-system WARM_PREFIX_TARGET=1
         ```
 
-6. Add the following parameter to your NodeGroup config file
+7. Add the following parameter to your NodeGroup config file
 
     ```sh
     maxPodsPerNode: 80
@@ -165,7 +165,7 @@ If the EKS Cluster version is 1.21 or later the parameter WARM_PREFIX_TARGET is 
         privateNetworking: true # This must be set to 'true' when only 'Private' subnets has been configured on the EKS Cluster config file
     ```
 
-5. Describe one of the nodes to determine the max pods for the node.
+8. Describe one of the nodes to determine the max pods for the node.
 
     ```sh
     kubectl get nodes
@@ -191,11 +191,6 @@ If the EKS Cluster version is 1.21 or later the parameter WARM_PREFIX_TARGET is 
 * [How do I resolve kubelet or CNI plugin issues for Amazon EKS?](https://aws.amazon.com/premiumsupport/knowledge-center/eks-cni-plugin-troubleshooting/)
 
 * [Troubleshooting Tips](https://github.com/aws/amazon-vpc-cni-k8s/blob/master/docs/troubleshooting.md)
-
-## Doubts
-* If you have an existing managed node group, the next AMI or launch template update of your node group results in new worker nodes coming up with the new IP address prefix assignment-enabled max-pod value (https://docs.aws.amazon.com/eks/latest/userguide/cni-increase-ip-addresses.html)
-
-* I think we should add the VPC CNI Plugin configuration to the Cluster config yaml file. That way we add this feature to our product (Remember the prerequisite of contiguous /28 IPv4 address blocks. For that to be always true we must always create the customer EKS cluster in one new VPC and carefully plan the VPC IPv4 CIDR block and the number of available IPv4 addresses per subnet)
 
 ## Must read
 
