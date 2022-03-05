@@ -1,0 +1,28 @@
+---
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: <EksClusterName>
+  region: sa-east-1
+  version: "1.21"
+
+vpc:
+  id: <VpcID>
+  subnets:
+    private:
+      sa-east-1a:
+        id: <PrivateSubnetID-01>
+        
+      sa-east-1b:
+        id: <PrivateSubnetID-02>
+
+      sa-east-1c:
+        id: <PrivateSubnetID-03>
+
+cloudWatch:
+  clusterLogging:
+    enableTypes: ["*"]
+
+secretsEncryption:
+  keyARN: <KmsKeyArn>
