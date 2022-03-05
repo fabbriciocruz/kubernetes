@@ -29,7 +29,7 @@
 
 ## Architecture
 
-![image](https://gitlab.operacaomulticloud.com/arquitetura/kubernetes/-/raw/master/AWS%20EKS/Documentation_Images/Architecture_Rancher_EKS.jpg)
+![image](https://github.com/fabbriciocruz/kubernetes/blob/main/AmazonEKS/Documentation_Images/Architecture_Rancher_EKS.jpg)
 
 ## Network Requirements
 
