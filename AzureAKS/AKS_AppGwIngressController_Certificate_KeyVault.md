@@ -7,7 +7,7 @@
 4. Create a self-signed TLS certificate; store it in the KeyVault; upload the certicate to the Application Gateway
 5. Deploy an example application (4-AKS-ingress_2048.yaml) which will be exposed via a public Application Gateway listening on HTTP and HTTPS protocols (HTTP will be redirected to HTTPS)
 
-![image](https://gitlab.operacaomulticloud.com/arquitetura/kubernetes/-/raw/master/Azure%20AKS/Documentation_Images/AKS_AppGwIngressController_KeyVaultCertificate-75.png)
+![image](https://github.com/fabbriciocruz/kubernetes/blob/main/AzureAKS/Documentation_Images/AKS_AppGwIngressController_KeyVaultCertificate-75.png)
 
 ## Tests
 All tests have been run in the Brazil South location with Standard_B2s VMs as Worker Nodes
