@@ -334,7 +334,7 @@ https://docs.microsoft.com/en-us/azure/aks/supported-kubernetes-versions?tabs=az
 1. Apply the yaml configuration file
 
     ```sh
-    kubectl apply 4-AKS-ingress_2048.yaml
+    kubectl apply -f 4-AKS-ingress_2048.yaml
     ```
 
 2. Check the ingress is deployed using the kubectl get ingress command
