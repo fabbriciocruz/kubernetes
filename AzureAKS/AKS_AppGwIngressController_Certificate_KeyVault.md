@@ -320,7 +320,7 @@ https://docs.microsoft.com/en-us/azure/aks/supported-kubernetes-versions?tabs=az
 
 11. Add the following anottations into the configuration yaml file of your example application and add the name of the Certificate
 
-    [4-AKS-ingress_2048.yaml](https://gitlab.operacaomulticloud.com/arquitetura/kubernetes/-/blob/master/Azure%20AKS/Example_Application/4-AKS-ingress_2048.yaml)
+    [4-AKS-ingress_2048.yaml](https://github.com/fabbriciocruz/kubernetes/blob/main/AzureAKS/Example_Application/4-AKS-ingress_2048.yaml)
 
     ```sh
     appgw.ingress.kubernetes.io/appgw-ssl-certificate: "<Name of the Certificate which has been uploaded to the Application Gateway"
