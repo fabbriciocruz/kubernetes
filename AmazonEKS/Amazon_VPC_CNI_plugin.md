@@ -112,7 +112,7 @@ For example: A t3.small can have 3 ENIs and each one of its ENI can have 4 IP ad
         kubectl set env daemonset aws-node -n kube-system ENABLE_PREFIX_DELEGATION=true
         ```
 
-5. Configure the parameter WARM_PREFIX_TARGET (Check out at the end of this HowTo some considerations on WARM_IP_TARGET or MINIMUM_IP_TARGET) <br>
+5. Configure the parameter WARM_PREFIX_TARGET (Check out at the end of this HowTo some considerations on WARM_IP_TARGET and MINIMUM_IP_TARGET) <br>
 
     If the EKS Cluster version is 1.21 or later the parameter WARM_PREFIX_TARGET is configured to 1 by default
 
@@ -134,7 +134,7 @@ For example: A t3.small can have 3 ENIs and each one of its ENI can have 4 IP ad
     maxPodsPerNode: 110
     ```
 
-    The following is an example of a NodeGroup config file:
+    The following is an example of a Managed NodeGroup config file:
     
     ```sh
     apiVersion: eksctl.io/v1alpha5
@@ -158,17 +158,13 @@ For example: A t3.small can have 3 ENIs and each one of its ENI can have 4 IP ad
     ```
 
 7. Create a new EKS Managed Node Group
-
-    ```sh
-    eksctl create nodegroup --config-file= <NodeGroupConfigFile.yaml>
-    ```
     
     **Note ([Managing NodeGroups](https://eksctl.io/usage/managing-nodegroups/)):** By design, nodegroups are immutable. This means that if you need to change something (other than scaling) like the AMI or the instance type of a nodegroup, you would need to create a new nodegroup with the desired changes, move the load and delete the old one.  
 
     1. Create a new managed node group
 
         ```sh
-        eksctl create nodegroup --config-file= <NodeGroupConfigFile.yaml>
+        eksctl create nodegroup --config-file=<NodeGroupConfigFile.yaml>
         ```
 
     2. Check if it is ok
@@ -222,7 +218,7 @@ For example: A t3.small can have 3 ENIs and each one of its ENI can have 4 IP ad
 * [Architecting Kubernetes clusters — choosing a worker node size](https://learnk8s.io/kubernetes-node-size#:~:text=On%20Amazon%20Elastic%20Kubernetes%20Service,of%20the%20type%20of%20node)
 
 
-## The reason why we should not set the `WARM_IP_TARGET` parameter on the step 6 of this HowTo
+## The reason why we should not set the `WARM_IP_TARGET` parameter on the step 5 of this HowTo
 From [Add additional documentation around IPs and ENIs](https://github.com/mogren/amazon-vpc-cni-k8s/commit/7f40d80b77859ba8854d997690cabc69ea645612)
 
 To be extra clear, only set `WARM_IP_TARGET` for small clusters, or clusters with very low pod churn. It's also advised 
