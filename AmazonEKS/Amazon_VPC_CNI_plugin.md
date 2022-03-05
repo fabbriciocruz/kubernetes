@@ -109,7 +109,7 @@ For example: A t3.small can have 3 ENIs and each one of its ENI can have 4 IP ad
     * If the parameter has not been set yet then run the following command:
 
         ```sh
-        kubectl describe daemonset -n kube-system aws-node | grep -in ENABLE_PREFIX_DELEGATION
+        kubectl set env daemonset aws-node -n kube-system ENABLE_PREFIX_DELEGATION=true
         ```
 
 5. Configure the parameter WARM_PREFIX_TARGET (Check out at the end of this HowTo some considerations on WARM_IP_TARGET or MINIMUM_IP_TARGET) <br>
