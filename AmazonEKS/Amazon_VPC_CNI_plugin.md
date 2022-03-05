@@ -59,7 +59,7 @@ For example: A t3.small can have 3 ENIs and each one of its ENI can have 4 IP ad
     * Node instance type: t3.small (spot instance)
     * Region: sa-east-1
     * The Cluster and all its resources have been created using the [eksctl](https://eksctl.io/) command.
-    * All config files can be downloaded [here]()
+    * All config files can be found [here](https://github.com/fabbriciocruz/kubernetes/tree/main/AmazonEKS/Config_Files/Amazon_VPC_CNI_plugin)
 
 ## Prerequisites
 
