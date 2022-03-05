@@ -1,5 +1,5 @@
 
-# Amazon VPC CNI plugin: Increase the amount of available IP addresses for your Amazon EC2 EKS nodes
+# Amazon VPC CNI plugin and Prefix assignment: Increase the amount of available IP addresses for your Amazon EC2 EKS nodes
 
 ## References
 
@@ -53,12 +53,17 @@ For example: A t3.small can have 3 ENIs and each one of its ENI can have 4 IP ad
 
 ## Considerations
 
-* This HowTo has been validated with a t3.small EC2 instance running on an EKS Cluster Version 1.21 sa-east-1 region.  
-The Cluster and all its resources have been created using the [eksctl](https://eksctl.io/) command
+* This HowTo has been validated against the following scenario:
+    * EKS Cluster Version 1.21
+    * Managed Node Group
+    * Node instance type: t3.small (spot instance)
+    * Region: sa-east-1
+    * The Cluster and all its resources have been created using the [eksctl](https://eksctl.io/) command.
+    * All config files can be downloaded [here]()
 
 ## Prerequisites
 
-* This apply only to AWS Nitro System EC2 instances running on a EKS Managed Node Group
+* Prefix delegation is only supported on AWS Nitro System EC2 instances.
 
 * Your VPC must have enough available contiguous /28 IPv4 address blocks to support this capability.
 
