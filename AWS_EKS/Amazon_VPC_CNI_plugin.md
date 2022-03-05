@@ -1,7 +1,7 @@
 
 # Amazon VPC CNI plugin: Increase the amount of available IP addresses for your Amazon EC2 EKS nodes
 
-## Documentation
+## References
 
 * [Increase the amount of available IP addresses for your Amazon EC2 nodes](https://docs.aws.amazon.com/eks/latest/userguide/cni-increase-ip-addresses.html) (The base for this HowTo)
 
