@@ -1,0 +1,49 @@
+---
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: <EKS_CLUSTER_NAME>
+  region: sa-east-1
+  version: "<VERSION>"
+
+vpc:
+  id: <VPC_ID>
+  subnets:
+    # must provide 'private' and/or 'public' subnets by availibility zone as shown
+    private:
+      sa-east-1a:
+        id: <PRIVATE_SUBNET_1a>
+        
+      sa-east-1b:
+        id: <PRIVATE_SUBNET_1b>
+
+      sa-east-1c:
+        id: <PRIVATE_SUBNET_1c>
+
+managedNodeGroups:
+- name: <NODEGROUP_NAME>
+  desiredCapacity: 2
+# Using spot instances and selecting ec2 instance types (If are going to deploy on-demand ec2 instances then comment the lines above and uncomment the session "On-demand ec2 instances")
+  spot: true
+  instanceTypes: 
+  - t3.small
+  - t2.small
+  - t3.medium
+  - t2.medium
+# On-demand ec2 instances
+#  instanceTypes:
+#  - <INSTANCE_TYPE>
+
+  ssh:
+    enableSsm: true
+  privateNetworking: true # if only 'Private' subnets are given, this must be enabled
+
+
+# To enable all of the control plane logs, uncomment below:
+cloudWatch:
+  clusterLogging:
+    enableTypes: ["*"]
+
+secretsEncryption:
+  keyARN: <CUSTOMER_MANAGED_KEY_ARN>
