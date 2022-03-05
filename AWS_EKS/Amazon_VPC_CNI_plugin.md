@@ -16,7 +16,7 @@
 * [EKS Managed Nodegroups](https://eksctl.io/usage/eks-managed-nodes/)
 
 
-## Goal
+## Goals
 
 * Since each Pod is assigned its own IP address, the number of IP addresses supported by an instance type (EKS node) is a factor in determining the number of Pods that can run on the instance. AWS Nitro System instance types optionally support significantly more IP addresses than non Nitro System instance types. Not all IP addresses assigned for an instance are available to Pods however.  
 To determine how many Pods an instance type supports, see [Amazon EKS recommended maximum Pods for each Amazon EC2 instance type](https://docs.aws.amazon.com/eks/latest/userguide/choosing-instance-type.html#determine-max-pods).  
