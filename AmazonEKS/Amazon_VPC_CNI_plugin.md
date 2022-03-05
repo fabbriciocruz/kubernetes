@@ -85,7 +85,10 @@ For example: A t3.small can have 3 ENIs and each one of its ENI can have 4 IP ad
     Server Version: v1.21.5-eks-bc4871b
     ```
 
-2. Confirm that your currently-installed Amazon VPC CNI version is 1.9.0 or 1.10.1 or later
+2. (Optional, but recommended) The Amazon VPC CNI add-on configured with its own IAM role that has the necessary IAM policy attached to it. For more information, see [Configuring the Amazon VPC CNI plugin to use IAM roles for service accounts](https://docs.aws.amazon.com/eks/latest/userguide/cni-iam-role.html)
+
+
+3. Confirm that your currently-installed Amazon VPC CNI version is 1.9.0 or 1.10.1 or later
 
     ```sh
     kubectl describe daemonset aws-node --namespace kube-system | grep Image | cut -d "/" -f 2
@@ -93,23 +96,7 @@ For example: A t3.small can have 3 ENIs and each one of its ENI can have 4 IP ad
 
     If your version is earlier than 1.9.0, then you must update it. For more information, see the updating sections of [Managing the Amazon VPC CNI add-on](https://docs.aws.amazon.com/eks/latest/userguide/managing-vpc-cni.html)
 
-3. Enable the parameter to assign prefixes to network interfaces for the Amazon VPC CNI Daemonset. When you deploy a 1.21 or later cluster, version 1.10.1 or later of the VPC CNI add-on is deployed with it, and this setting is true by default.
-
-    * Check if the parameter is enabled
-
-        ```sh
-        kubectl describe daemonsets.apps -n kube-system | grep ENABLE_PREFIX_DELEGATION
-        ```
-
-    * If the command above returns "false" then run the following command
-
-        ```sh
-        kubectl set env daemonset aws-node -n kube-system ENABLE_PREFIX_DELEGATION=true
-        ```
-
-4. (Optional, but recommended) The Amazon VPC CNI add-on configured with its own IAM role that has the necessary IAM policy attached to it. For more information, see [Configuring the Amazon VPC CNI plugin to use IAM roles for service accounts](https://docs.aws.amazon.com/eks/latest/userguide/cni-iam-role.html)
-
-5. Enable the parameter to assign prefixes to network interfaces for the Amazon VPC CNI Daemonset (ENABLE_PREFIX_DELEGATION)<br>
+4. Enable the parameter to assign prefixes to network interfaces for the Amazon VPC CNI Daemonset (ENABLE_PREFIX_DELEGATION)<br>
 
     If the EKS Cluster version is 1.21 or later the parameter ENABLE_PREFIX_DELEGATION is true by default
 
@@ -125,7 +112,7 @@ For example: A t3.small can have 3 ENIs and each one of its ENI can have 4 IP ad
         kubectl describe daemonset -n kube-system aws-node | grep -in ENABLE_PREFIX_DELEGATION
         ```
 
-6. Configure the parameter WARM_PREFIX_TARGET (Check out at the end of this HowTo some considerations on WARM_IP_TARGET or MINIMUM_IP_TARGET) <br>
+5. Configure the parameter WARM_PREFIX_TARGET (Check out at the end of this HowTo some considerations on WARM_IP_TARGET or MINIMUM_IP_TARGET) <br>
 
     If the EKS Cluster version is 1.21 or later the parameter WARM_PREFIX_TARGET is configured to 1 by default
 
@@ -141,7 +128,7 @@ For example: A t3.small can have 3 ENIs and each one of its ENI can have 4 IP ad
         kubectl set env daemonset aws-node -n kube-system WARM_PREFIX_TARGET=1
         ```
 
-7. Add the following parameter to your NodeGroup config file
+6. Add the following parameter to your NodeGroup config file
 
     ```sh
     maxPodsPerNode: 110
@@ -170,7 +157,7 @@ For example: A t3.small can have 3 ENIs and each one of its ENI can have 4 IP ad
         privateNetworking: true # This must be set to 'true' when only 'Private' subnets has been configured on the EKS Cluster config file
     ```
 
-8. Create a new EKS Managed Node Group
+7. Create a new EKS Managed Node Group
 
     ```sh
     eksctl create nodegroup --config-file= <NodeGroupConfigFile.yaml>
@@ -196,7 +183,7 @@ For example: A t3.small can have 3 ENIs and each one of its ENI can have 4 IP ad
         eksctl delete nodegroup --cluster <EksClusterName> --name <NodegrpName>
         ```
 
-9. Describe one of the nodes to determine the max pods for the node
+8. Describe one of the nodes to determine the max pods for the node
 
     ```sh
     kubectl get nodes
