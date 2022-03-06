@@ -24,7 +24,7 @@ By default, the number of IP addresses available to assign to pods is based on t
 With prefix assignment mode, the maximum number of elastic network interfaces per instance type remains the same, but you can now configure Amazon VPC CNI to assign /28 (16 IP addresses) IPv4 address prefixes, instead of assigning individual secondary IPv4 addresses to network interfaces.  
 For example: A t3.small can have 3 ENIs and each one of its ENI can have 4 IP addresses. So, the maximum pods for a t3.small EKS node is 11 pods (11 IP addresses for Pods and 01 IP address for the EKS Node). When enabled, the CNI plugin and the Prefix Delegation will increase that number to 110 pods.
 
-![image](https://github.com/fabbriciocruz/kubernetes/blob/main/AmazonEKS/Documentation_Images/Amazon_VPC_CNI_plugin.png)
+![image](https://d2908q01vomqb2.cloudfront.net/fe2ef495a1152561572949784c16bf23abb28057/2021/09/03/image-8-1.png)
 
     * Take a look at the link, download the max-pods-calculator.sh and run the following commands changing the instance-type and cni-version parameters as you need.  
     [Amazon EKS recommended maximum Pods for each Amazon EC2 instance type](https://docs.aws.amazon.com/eks/latest/userguide/choosing-instance-type.html#determine-max-pods)
