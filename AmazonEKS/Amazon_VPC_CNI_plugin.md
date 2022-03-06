@@ -26,31 +26,30 @@ For example: A t3.small can have 3 ENIs and each one of its ENI can have 4 IP ad
 
 ![image](https://d2908q01vomqb2.cloudfront.net/fe2ef495a1152561572949784c16bf23abb28057/2021/09/03/image-8-1.png)
 
-    * Take a look at the link, download the max-pods-calculator.sh and run the following commands changing the instance-type and cni-version parameters as you need.  
-    [Amazon EKS recommended maximum Pods for each Amazon EC2 instance type](https://docs.aws.amazon.com/eks/latest/userguide/choosing-instance-type.html#determine-max-pods)
+* Take a look at the link, download the max-pods-calculator.sh and run the following commands changing the instance-type and cni-version parameters as you need.  
+[Amazon EKS recommended maximum Pods for each Amazon EC2 instance type](https://docs.aws.amazon.com/eks/latest/userguide/choosing-instance-type.html#determine-max-pods)
+    * Command 01
 
-        * Command 01
+        ```sh
+        ./max-pods-calculator.sh --instance-type t3.small --cni-version 1.10.1-eksbuild.1
+        ```
 
-            ```sh
-            ./max-pods-calculator.sh --instance-type t3.small --cni-version 1.10.1-eksbuild.1
-            ```
+        Output:
 
-            Output:
-
-            ```sh
-            11
-            ```
-        * Command 02
+        ```sh
+        11
+        ```
+    * Command 02
         
-            ```sh
-            ./max-pods-calculator.sh --instance-type t3.small --cni-version 1.10.1-eksbuild.1 --cni-prefix-delegation-enabled
-            ```
+        ```sh
+        ./max-pods-calculator.sh --instance-type t3.small --cni-version 1.10.1-eksbuild.1 --cni-prefix-delegation-enabled
+        ```
 
-            Output:
+        Output:
 
-            ```sh
-            110
-            ```
+        ```sh
+        110
+        ```
 
 * Managed node groups enforces a maximum number on the value of maxPods. For instances with less than 30 vCPUs the maximum number is 110 and for all other instances the maximum number is 250. This maximum number is applied whether prefix delegation is enabled or not
 
