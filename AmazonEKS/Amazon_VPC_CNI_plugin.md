@@ -20,6 +20,7 @@
 
 * Since each Pod is assigned its own IP address, the number of IP addresses supported by an instance type (EKS node) is a factor in determining the number of Pods that can run on the instance. AWS Nitro System instance types optionally support significantly more IP addresses than non Nitro System instance types. Not all IP addresses assigned for an instance are available to Pods however.  
 To determine how many Pods an instance type supports, see [Amazon EKS recommended maximum Pods for each Amazon EC2 instance type](https://docs.aws.amazon.com/eks/latest/userguide/choosing-instance-type.html#determine-max-pods).  
+By default, the number of IP addresses available to assign to pods is based on the maximum number of elastic network interfaces and secondary IPs per interface that can be attached to an EC2 instance type.  
 To assign a significantly larger number of IP addresses to your instances, you must have version 1.9.0 or later of the Amazon VPC CNI add-on installed in your cluster and configured appropriately.  
 For example: A t3.small can have 3 ENIs and each one of its ENI can have 4 IP addresses. So, the maximum pods for a t3.small EKS node is 11 pods (11 IP addresses for Pods and 01 IP address for the EKS Node). When enabled, the CNI plugin and the Prefix Delegation will increase that number to 110 pods.
 
