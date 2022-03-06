@@ -59,6 +59,9 @@ Take a look at the link, download the max-pods-calculator.sh and run the followi
 
 Managed node groups enforces a maximum number on the value of maxPods. For instances with less than 30 vCPUs the maximum number is 110 and for all other instances the maximum number is 250. This maximum number is applied whether prefix delegation is enabled or not.
 
+The number of prefixes that can be assigned to an ENI is equal to the number of [IP addresses supported by each ENI of the instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#AvailableIpPerENI) minus one (e.g., for a t3.small instance the number of IP addresses per ENI is 4. So, the number of prefixes per ENI will be 3)
+
+
 ## Considerations
 
 This HowTo has been validated against the following scenario:
@@ -69,11 +72,6 @@ This HowTo has been validated against the following scenario:
 * The Cluster and all its resources have been created using the [eksctl](https://eksctl.io/) command.
 * All config files can be found [here](https://github.com/fabbriciocruz/kubernetes/tree/main/AmazonEKS/Config_Files/Amazon_VPC_CNI_plugin)
 
-The number of prefixes that can be assigned to a ENI is as follows:
-
-```sh
-NumberOfPrefixes = NumberOfIpAddressess - 1
-```
 
 ## Prerequisites
 
