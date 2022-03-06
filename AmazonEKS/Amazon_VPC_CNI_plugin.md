@@ -76,7 +76,7 @@ This HowTo has been validated against the following scenario:
 
 ## Prerequisites
 
-* Prefix delegation is only supported on AWS Nitro System EC2 instances.
+* Prefix assignment mode is supported on AWS Nitro based EC2 instance types with Amazon Linux 2. This capability is not supported on Windows.
 
 * Your VPC must have enough available contiguous /28 IPv4 address blocks to support this capability.
 
