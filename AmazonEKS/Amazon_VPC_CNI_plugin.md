@@ -5,7 +5,7 @@
 
 * [Increase the amount of available IP addresses for your Amazon EC2 nodes](https://docs.aws.amazon.com/eks/latest/userguide/cni-increase-ip-addresses.html) (The base for this HowTo)
 
-* [Amazon VPC CNI plugin](https://aws.amazon.com/blogs/containers/amazon-vpc-cni-increases-pods-per-node-limits/)(A great article on how it works. By Sheetal Joshi, Mike Stefaniak, and Jayanth Varavani)
+* [Amazon VPC CNI plugin](https://aws.amazon.com/blogs/containers/amazon-vpc-cni-increases-pods-per-node-limits/) (A great article on how it works. By Sheetal Joshi, Mike Stefaniak, and Jayanth Varavani)
 
 * [Amazon EKS recommended maximum Pods for each Amazon EC2 instance type](https://docs.aws.amazon.com/eks/latest/userguide/choosing-instance-type.html#determine-max-pods)
 
@@ -59,7 +59,8 @@ Take a look at the link, download the max-pods-calculator.sh and run the followi
 
 Managed node groups enforces a maximum number on the value of maxPods. For instances with less than 30 vCPUs the maximum number is 110 and for all other instances the maximum number is 250. This maximum number is applied whether prefix delegation is enabled or not.
 
-The number of prefixes that can be assigned to an ENI is equal to the number of [IP addresses supported by each ENI of the instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#AvailableIpPerENI) minus one (e.g., for a t3.small instance the number of IP addresses per ENI is 4. So, the number of prefixes per ENI will be 3)
+The number of prefixes that can be assigned to an ENI is equal to the number of [IP addresses supported by each ENI of the instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#AvailableIpPerENI) minus one (the primary ip address which is attached to the EKS node).  
+For example, for a t3.small instance the number of IP addresses per ENI is 4. Therefore, the number of prefixes per ENI will be 3.
 
 
 ## Considerations
