@@ -15,11 +15,14 @@
 
 * [EKS Managed Nodegroups](https://eksctl.io/usage/eks-managed-nodes/)
 
+* [IP addresses per network interface per instance type](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#AvailableIpPerENI)
+
 
 ## Goal
 
 Since each Pod is assigned its own IP address, the number of IP addresses supported by an instance type (EKS node) is a factor in determining the number of Pods that can run on the instance. AWS Nitro System instance types optionally support significantly more IP addresses than non Nitro System instance types. Not all IP addresses assigned for an instance are available to Pods however.  
 To determine how many Pods an instance type supports, see [Amazon EKS recommended maximum Pods for each Amazon EC2 instance type](https://docs.aws.amazon.com/eks/latest/userguide/choosing-instance-type.html#determine-max-pods).  
+
 By default, the number of IP addresses available to assign to pods is based on the maximum number of elastic network interfaces and secondary IPs per interface that can be attached to an EC2 instance type.  
 With prefix assignment mode, the maximum number of elastic network interfaces per instance type remains the same, but you can now configure Amazon VPC CNI to assign /28 (16 IP addresses) IPv4 address prefixes, instead of assigning individual secondary IPv4 addresses to network interfaces.  
 
@@ -54,7 +57,7 @@ Take a look at the link, download the max-pods-calculator.sh and run the followi
     110
     ```
 
-Managed node groups enforces a maximum number on the value of maxPods. For instances with less than 30 vCPUs the maximum number is 110 and for all other instances the maximum number is 250. This maximum number is applied whether prefix delegation is enabled or not
+Managed node groups enforces a maximum number on the value of maxPods. For instances with less than 30 vCPUs the maximum number is 110 and for all other instances the maximum number is 250. This maximum number is applied whether prefix delegation is enabled or not.
 
 ## Considerations
 
@@ -65,6 +68,12 @@ This HowTo has been validated against the following scenario:
 * Region: sa-east-1
 * The Cluster and all its resources have been created using the [eksctl](https://eksctl.io/) command.
 * All config files can be found [here](https://github.com/fabbriciocruz/kubernetes/tree/main/AmazonEKS/Config_Files/Amazon_VPC_CNI_plugin)
+
+The number of prefixes that can be assigned to a ENI is as follows:
+
+```sh
+NumberOfPrefixes = NumberOfIpAddressess - 1
+```
 
 ## Prerequisites
 
@@ -225,6 +234,8 @@ This HowTo has been validated against the following scenario:
 
 ## The reason why we should not set the `WARM_IP_TARGET` parameter on the step 5 of this HowTo
 From [Add additional documentation around IPs and ENIs](https://github.com/mogren/amazon-vpc-cni-k8s/commit/7f40d80b77859ba8854d997690cabc69ea645612)
+
+The Amazon VPC CNI supports setting WARM_PREFIX_TARGET or either/both WARM_IP_TARGET and MINIMUM_IP_TARGET. The recommended (and default value set in EKS aws-node DaemonSet deployment [manifest file](https://github.com/aws/amazon-vpc-cni-k8s/blob/master/config/master/aws-k8s-cni-cn.yaml)) configuration is to set WARM_PREFIX_TARGET to 1.  
 
 To be extra clear, only set `WARM_IP_TARGET` for small clusters, or clusters with very low pod churn. It's also advised 
 to set `MINIMUM_IP_TARGET` slightly higher than the expected number of pods you plan to run on each node.
