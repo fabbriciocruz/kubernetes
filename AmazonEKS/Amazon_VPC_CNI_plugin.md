@@ -18,50 +18,53 @@
 
 ## Goal
 
-* Since each Pod is assigned its own IP address, the number of IP addresses supported by an instance type (EKS node) is a factor in determining the number of Pods that can run on the instance. AWS Nitro System instance types optionally support significantly more IP addresses than non Nitro System instance types. Not all IP addresses assigned for an instance are available to Pods however.  
+Since each Pod is assigned its own IP address, the number of IP addresses supported by an instance type (EKS node) is a factor in determining the number of Pods that can run on the instance. AWS Nitro System instance types optionally support significantly more IP addresses than non Nitro System instance types. Not all IP addresses assigned for an instance are available to Pods however.  
 To determine how many Pods an instance type supports, see [Amazon EKS recommended maximum Pods for each Amazon EC2 instance type](https://docs.aws.amazon.com/eks/latest/userguide/choosing-instance-type.html#determine-max-pods).  
 By default, the number of IP addresses available to assign to pods is based on the maximum number of elastic network interfaces and secondary IPs per interface that can be attached to an EC2 instance type.  
 With prefix assignment mode, the maximum number of elastic network interfaces per instance type remains the same, but you can now configure Amazon VPC CNI to assign /28 (16 IP addresses) IPv4 address prefixes, instead of assigning individual secondary IPv4 addresses to network interfaces.  
-For example: A t3.small can have 3 ENIs and each one of its ENI can have 4 IP addresses. So, the maximum pods for a t3.small EKS node is 11 pods (11 IP addresses for Pods and 01 IP address for the EKS Node). When enabled, the CNI plugin and the Prefix Delegation will increase that number to 110 pods.
 
 ![image](https://d2908q01vomqb2.cloudfront.net/fe2ef495a1152561572949784c16bf23abb28057/2021/09/03/image-8-1.png)
 
-* Take a look at the link, download the max-pods-calculator.sh and run the following commands changing the instance-type and cni-version parameters as you need.  
+For example: A t3.small can have 3 ENIs and each one of its ENI can have 4 IP addresses. So, the maximum pods for a t3.small EKS node is 11 pods (11 IP addresses for Pods and 01 IP address for the EKS Node). When enabled, the CNI plugin and the Prefix Delegation will increase that number to 110 pods.  
+
+
+Take a look at the link, download the max-pods-calculator.sh and run the following commands changing the instance-type and cni-version parameters as you need.  
 [Amazon EKS recommended maximum Pods for each Amazon EC2 instance type](https://docs.aws.amazon.com/eks/latest/userguide/choosing-instance-type.html#determine-max-pods)
-    * Command 01
 
-        ```sh
-        ./max-pods-calculator.sh --instance-type t3.small --cni-version 1.10.1-eksbuild.1
-        ```
+* Command 01
 
-        Output:
+    ```sh
+    ./max-pods-calculator.sh --instance-type t3.small --cni-version 1.10.1-eksbuild.1
+    ```
 
-        ```sh
-        11
-        ```
-    * Command 02
-        
-        ```sh
-        ./max-pods-calculator.sh --instance-type t3.small --cni-version 1.10.1-eksbuild.1 --cni-prefix-delegation-enabled
-        ```
+    Output:
 
-        Output:
+    ```sh
+    11
+    ```
+* Command 02
+    
+    ```sh
+    ./max-pods-calculator.sh --instance-type t3.small --cni-version 1.10.1-eksbuild.1 --cni-prefix-delegation-enabled
+    ```
 
-        ```sh
-        110
-        ```
+    Output:
 
-* Managed node groups enforces a maximum number on the value of maxPods. For instances with less than 30 vCPUs the maximum number is 110 and for all other instances the maximum number is 250. This maximum number is applied whether prefix delegation is enabled or not
+    ```sh
+    110
+    ```
+
+Managed node groups enforces a maximum number on the value of maxPods. For instances with less than 30 vCPUs the maximum number is 110 and for all other instances the maximum number is 250. This maximum number is applied whether prefix delegation is enabled or not
 
 ## Considerations
 
-* This HowTo has been validated against the following scenario:
-    * EKS Cluster Version 1.21
-    * Managed Node Group
-    * Node instance type: t3.small (spot instance)
-    * Region: sa-east-1
-    * The Cluster and all its resources have been created using the [eksctl](https://eksctl.io/) command.
-    * All config files can be found [here](https://github.com/fabbriciocruz/kubernetes/tree/main/AmazonEKS/Config_Files/Amazon_VPC_CNI_plugin)
+This HowTo has been validated against the following scenario:
+* EKS Cluster Version 1.21
+* Managed Node Group
+* Node instance type: t3.small (spot instance)
+* Region: sa-east-1
+* The Cluster and all its resources have been created using the [eksctl](https://eksctl.io/) command.
+* All config files can be found [here](https://github.com/fabbriciocruz/kubernetes/tree/main/AmazonEKS/Config_Files/Amazon_VPC_CNI_plugin)
 
 ## Prerequisites
 
