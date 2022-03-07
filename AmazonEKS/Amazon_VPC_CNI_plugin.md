@@ -76,6 +76,12 @@ This HowTo has been validated against the following scenario:
 
 ## Prerequisites
 
+* An existing cluster. To deploy one you can use this [config file](https://github.com/fabbriciocruz/kubernetes/blob/main/AmazonEKS/Config_Files/Amazon_VPC_CNI_plugin/ClusterConfig.yaml) and run the following command:
+
+```sh
+eksctl create cluster -f <ClusterConfigFile.yaml>
+```
+
 * Prefix assignment mode is supported on AWS Nitro based EC2 instance types with Amazon Linux 2. This capability is not supported on Windows.
 
 * Your VPC must have enough available contiguous /28 IPv4 address blocks to support this capability.
@@ -141,36 +147,7 @@ This HowTo has been validated against the following scenario:
         kubectl set env daemonset aws-node -n kube-system WARM_PREFIX_TARGET=1
         ```
 
-6. Add the following parameter to your NodeGroup config file
-
-    ```sh
-    maxPodsPerNode: 110
-    ```
-
-    The following is an example of a Managed NodeGroup config file:
-    
-    ```sh
-    apiVersion: eksctl.io/v1alpha5
-    kind: ClusterConfig
-
-    metadata:
-      name: <EksClusterName>
-      region: <AwsRegion>
-
-    managedNodeGroups:
-      - name: <NodeGroupName>
-        desiredCapacity: 1
-    # Using spot instances and selecting ec2 instance types
-        spot: true
-        instanceTypes: 
-        - t3.small
-        maxPodsPerNode: 110
-        ssh:
-          enableSsm: true
-        privateNetworking: true # This must be set to 'true' when only 'Private' subnets has been configured on the EKS Cluster config file
-    ```
-
-7. Create a new EKS Managed Node Group
+6. Create a new EKS Managed Node Group (Node Group Config file [here](https://github.com/fabbriciocruz/kubernetes/blob/main/AmazonEKS/Config_Files/Amazon_VPC_CNI_plugin/NodeGroupConfig.yaml))
     
     **Note ([Managing NodeGroups](https://eksctl.io/usage/managing-nodegroups/)):** By design, nodegroups are immutable. This means that if you need to change something (other than scaling) like the AMI or the instance type of a nodegroup, you would need to create a new nodegroup with the desired changes, move the load and delete the old one.  
 
@@ -192,7 +169,7 @@ This HowTo has been validated against the following scenario:
         eksctl delete nodegroup --cluster <EksClusterName> --name <NodegrpName>
         ```
 
-8. Describe one of the nodes to determine the max pods for the node
+7. Describe one of the nodes to determine the max pods for the node
 
     ```sh
     kubectl get nodes
@@ -212,6 +189,12 @@ This HowTo has been validated against the following scenario:
     memory:                      7244720Ki
     pods:                        110
     ```
+
+If the output doesn't show 110 pods you could try to uncomment the line maxPodsPerNode on the [node group config file](https://github.com/fabbriciocruz/kubernetes/blob/main/AmazonEKS/Config_Files/Amazon_VPC_CNI_plugin/NodeGroupConfig.yaml) and repeat the step 6:
+
+```sh
+maxPodsPerNode: 110
+```
 
 ## Troubleshooting
 
