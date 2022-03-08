@@ -20,6 +20,8 @@
 
 ## Goal
 
+The Amazon VPC CNI plugin for Kubernetes is the networking plugin for pod networking in Amazon EKS clusters. The plugin is responsible for allocating VPC IP addresses to Kubernetes nodes and configuring the necessary networking for pods on each node. Using this plugin allows Kubernetes pods to have the same IP address inside the pod as they do on the VPC network.
+
 Since each Pod is assigned its own IP address, the number of IP addresses supported by an instance type (EKS node) is a factor in determining the number of Pods that can run on the instance. AWS Nitro System instance types optionally support significantly more IP addresses than non Nitro System instance types. Not all IP addresses assigned for an instance are available to Pods however.  
 To determine how many Pods an instance type supports, see [Amazon EKS recommended maximum Pods for each Amazon EC2 instance type](https://docs.aws.amazon.com/eks/latest/userguide/choosing-instance-type.html#determine-max-pods).  
 
@@ -79,9 +81,11 @@ This HowTo has been validated against the following scenario:
 
 * An existing cluster. To deploy one you can use this [config file](https://github.com/fabbriciocruz/kubernetes/blob/main/AmazonEKS/Config_Files/Amazon_VPC_CNI_plugin/ClusterConfig.yaml) and run the following command:
 
-```sh
-eksctl create cluster -f <ClusterConfigFile.yaml>
-```
+    ```sh
+    eksctl create cluster -f <ClusterConfigFile.yaml>
+    ```
+
+* [Recommended version of the Amazon VPC CNI add-on for each cluster version](https://docs.aws.amazon.com/eks/latest/userguide/managing-vpc-cni.html#w245aac20c17c17b7)
 
 * Prefix assignment mode is supported on AWS Nitro based EC2 instance types with Amazon Linux 2. This capability is not supported on Windows.
 
