@@ -56,6 +56,7 @@ Take a look at the link, download the max-pods-calculator.sh and run the followi
     ```sh
     110
     ```
+For a list of the maximum number of pods supported by each instance type, see [eni-max-pods.txt](https://github.com/awslabs/amazon-eks-ami/blob/master/files/eni-max-pods.txt) on GitHub.
 
 Managed node groups enforces a maximum number on the value of maxPods. For instances with less than 30 vCPUs the maximum number is 110 and for all other instances the maximum number is 250. This maximum number is applied whether prefix delegation is enabled or not.
 
