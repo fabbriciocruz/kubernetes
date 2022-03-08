@@ -5,7 +5,7 @@
 
 * [Increase the amount of available IP addresses for your Amazon EC2 nodes](https://docs.aws.amazon.com/eks/latest/userguide/cni-increase-ip-addresses.html) (The base for this HowTo)
 
-* [Amazon VPC CNI plugin](https://aws.amazon.com/blogs/containers/amazon-vpc-cni-increases-pods-per-node-limits/) (A great article on how it works. By Sheetal Joshi, Mike Stefaniak, and Jayanth Varavani)
+* [Amazon VPC CNI plugin increases pods per node limits](https://aws.amazon.com/blogs/containers/amazon-vpc-cni-increases-pods-per-node-limits/) (A great article on how it works. By Sheetal Joshi, Mike Stefaniak, and Jayanth Varavani)
 
 * [Amazon EKS recommended maximum Pods for each Amazon EC2 instance type](https://docs.aws.amazon.com/eks/latest/userguide/choosing-instance-type.html#determine-max-pods)
 
