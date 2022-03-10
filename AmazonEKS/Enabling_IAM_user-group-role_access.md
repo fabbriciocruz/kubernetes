@@ -1,4 +1,4 @@
-# Cluster Authentication<br><font size="4">Enabling IAM user and role access to an AWS EKS Cluster</font>
+# Cluster Authentication<br><font size="3">Enabling IAM user and role access to an AWS EKS Cluster</font>
 
 ## Goal
 
