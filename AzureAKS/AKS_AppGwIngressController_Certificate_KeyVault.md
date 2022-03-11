@@ -349,6 +349,8 @@ https://docs.microsoft.com/en-us/azure/aks/supported-kubernetes-versions?tabs=az
 
 https://ystatit.medium.com/account-management-on-azure-aks-with-aad-and-aks-rbac-fc178f90475b
 
+https://docs.microsoft.com/en-us/azure/aks/azure-ad-rbac
+
 ## Clean up
 Run the following command to delete all resources which have been created through this howto.
 
