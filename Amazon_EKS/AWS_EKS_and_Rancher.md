@@ -1,4 +1,5 @@
-# AWS EKS and Rancher - November 2021
+# AWS EKS and Rancher
+How-to publication date: November 2021
 
 
 * Intro
