@@ -92,19 +92,19 @@
         eksctl get cluster
         ```
 
-2. Import your EKS Console credentials to your new cluster
+2. Import your AWS Console credentials to your new cluster
 
-    * Add embratel.support role as cluster admin
+    * Add the IAM role you have assumed when logged in to the AWS Console as an EKS cluster admin (Replace <MY_IAM_ROLE_NAME> by the name of the IAM role you've assumed when logged in)
         ```sh
-        export EMBRATEL_ROLE=$(aws iam get-role --role-name embratel.support --query Role.Arn --output text)
+        export <MY_IAM_ROLE_NAME>=$(aws iam get-role --role-name <MyIamRole> --query Role.Arn --output text)
         ```
 
-    * With your ARN in hand, you can issue the command to create the identity mapping within the cluster.
+    * With your ARN in hand, you can issue the command to create the identity mapping within the cluster (Replace <MY_IAM_ROLE_NAME> by the name of the IAM role you've assumed when logged in)
         ```sh
         eksctl create iamidentitymapping \
         --cluster <CLUSTER_NAME> \
-        --arn ${EMBRATEL_ROLE} \
-        --username embratel.support \
+        --arn ${<MY_IAM_ROLE_NAME>} \
+        --username <MY_IAM_ROLE_NAME> \
         --group system:masters
         ```
 
@@ -113,7 +113,7 @@
         kubectl describe configmap -n kube-system aws-auth
         ```
 
-3. Install Helm (Write something here about the Helm version matrix and Rancher)
+3. Install Helm (Soon I'll be writing something here about the Helm version matrix and Rancher)
 
     ```sh
     curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
@@ -236,11 +236,6 @@
     * Install the Rancher Helm Chart
     
         https://rancher.com/docs/rancher/v2.6/en/installation/install-rancher-on-k8s/#install-the-rancher-helm-chart
-
-
-
-
-
 
 ## Configure EFS as persistent storage
 
