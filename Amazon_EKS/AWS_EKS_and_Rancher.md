@@ -1,9 +1,14 @@
 # AWS EKS and Rancher
 * How-to publication date: November 2021
 * How-to update: August 2022
-    * Rancher Version: v2.6.2 ???
-    * AWS EKS Version: 1.20.7 ????
-    * Nginx Version: 1.19.4 ????
+
+<bl >
+
+        Rancher Version: v2.6.2 ???
+
+        AWS EKS Version: 1.20.7 ????
+
+        Nginx Version: 1.19.4 ????
 
 <bl >
 
