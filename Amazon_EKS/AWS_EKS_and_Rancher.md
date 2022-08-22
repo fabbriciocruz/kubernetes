@@ -35,7 +35,7 @@
 
 ## Architecture
 
-![image](https://github.com/fabbriciocruz/kubernetes/blob/main/AmazonEKS/Documentation_Images/Architecture_Rancher_EKS.jpg)
+![image](https://github.com/fabbriciocruz/kubernetes/blob/eadd8dd0d290365e149fdb238904002ee902e190/Amazon_EKS/Documentation_Images/Architecture_Rancher_EKS.jpg)
 
 ## Network Requirements
 
@@ -55,23 +55,19 @@
 2. Take note of the EKS Highest Version Validated/certified (In the image below the version is 1.20.x)
     * Obs.: You only need to use the first two numbers in the yaml cluster config file
 
-![image]()
+![image](https://github.com/fabbriciocruz/kubernetes/blob/eadd8dd0d290365e149fdb238904002ee902e190/Amazon_EKS/Documentation_Images/Rancher_Hosted_Kubernetes_Version.png)
 
 3. Gp to the link below and check the AWS EKS version 
 
     https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-versions.html
 
-![image]()
+* As we go through this howto we'll run the command to add the Rancher repo and we'll get the latest stable version. So, you don't need to bother with the link bellow. It's just to well document this howto (The link bellow will take you to Rancher 2.6 documentation)
 
+   https://rancher.com/docs/rancher/v2.6/en/installation/resources/choosing-version/
 
-
-https://rancher.com/docs/rancher/v2.5/en/installation/resources/choosing-version/
-
-* As we go through this howto we'll run the command to add the Rancher repo and we'll get the latest stable version. So, you don't need to bother with the link above. It's just to well document this howto.
-
-* As you have taken note of the latest Rancher version then you'll need to check the Helm Version Requirements matrix
+* As you have taken note of the latest Rancher version then you'll need to check the Helm Version Requirements matrix (Rancher 2.6 documentation)
     
-    https://rancher.com/docs/rancher/v2.5/en/installation/resources/helm-version/
+    https://rancher.com/docs/rancher/v2.6/en/installation/resources/helm-version/
 
     * For example: Helm v3.2.x or higher is required to install or upgrade Rancher v2.5
 
@@ -81,13 +77,13 @@ https://rancher.com/docs/rancher/v2.5/en/installation/resources/choosing-version
 
 2. Deploy an EC2 instance and attach the IAM Role
 
-3. Run the commands from the shell script [Environment-setup.sh](https://gitlab.operacaomulticloud.com/arquitetura/kubernetes/-/blob/master/AWS%20EKS/Config_Files/Environment-setup.sh)
+3. Run the commands from the shell script [Environment-setup.sh](https://github.com/fabbriciocruz/kubernetes/blob/eadd8dd0d290365e149fdb238904002ee902e190/Amazon_EKS/Config_Files/Environment-setup.sh)
 
 ## Create the EKS Cluster and Rancher Server
 * Obs.: From the Rancher documentation we're following the option "Deploy Rancher into an existing VPC and a new Amazon EKS cluster"
 
 1. Create the EKS Cluster
-    * Edit the [manifest yaml file](https://gitlab.operacaomulticloud.com/arquitetura/kubernetes/-/blob/master/AWS%20EKS/Config_Files/clusterConfig_EksRancherInss_NodeGroupSpotInstance.yaml) as you need and apply the configuration
+    * Edit the [manifest yaml file](https://github.com/fabbriciocruz/kubernetes/blob/eadd8dd0d290365e149fdb238904002ee902e190/Amazon_EKS/Config_Files/clusterConfig_EksRancherInss_NodeGroupSpotInstance.yaml) as you need and apply the configuration
         ```sh
         eksctl create cluster -f <FILE_NAME>
         ```
