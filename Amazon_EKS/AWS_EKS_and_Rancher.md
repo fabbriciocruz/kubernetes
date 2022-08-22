@@ -1,6 +1,11 @@
 # AWS EKS and Rancher
-How-to publication date: November 2021
+* How-to publication date: November 2021
+* How-to update: August 2022
+    * Rancher Version: v2.6.2 ???
+    * AWS EKS Version: 1.20.7 ????
+    * Nginx Version: 1.19.4 ????
 
+<bl >
 
 * Intro
 
@@ -18,15 +23,15 @@ How-to publication date: November 2021
 
 ## Tests
 
-* All tests have been run in the Brazil Region
+* All tests have been run in the AWS sa-east-1 region
 * Rancher Version: v2.6.2
 * AWS EKS Version: 1.20.7
 * Nginx Version: 1.19.4
 
 ## Considerations
 * As per Rancher recommendations the Load Balancer for the Rancher Server must be a Layer 4 LB and per Rancher documentation the Load Balancer should be an AWS Classic LB
-    * We recommend configuring your load balancer as a Layer 4 balancer, forwarding plain 80/tcp and 443/tcp to the Rancher Management cluster nodes. The Ingress Controller on the cluster will redirect http traffic on port 80 to https on port 443.
-    * https://rancher.com/docs/rancher/v2.6/en/installation/install-rancher-on-k8s/chart-options/#external-tls-termination
+    * "We recommend configuring your load balancer as a Layer 4 balancer, forwarding plain 80/tcp and 443/tcp to the Rancher Management cluster nodes. The Ingress Controller on the cluster will redirect http traffic on port 80 to https on port 443."
+    https://rancher.com/docs/rancher/v2.6/en/installation/install-rancher-on-k8s/chart-options/#external-tls-termination
 
 ## Architecture
 
