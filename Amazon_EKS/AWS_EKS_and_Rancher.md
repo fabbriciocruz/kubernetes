@@ -99,7 +99,7 @@ This how-to allows you to deploy the latest version of all products and services
             aws sts get-caller-id
             ```
 
-    * Set the IAM role as an EKS cluster admin (Replace <MY_IAM_ROLE_NAME> by the name of the IAM role)
+    * Set the IAM role as an EKS cluster admin (Replace <MY_IAM_ROLE_NAME> by the name of the IAM role - The role's name must not have ".")
         ```sh
         export <MY_IAM_ROLE_NAME>=$(aws iam get-role --role-name <MyIamRole> --query Role.Arn --output text)
         ```
