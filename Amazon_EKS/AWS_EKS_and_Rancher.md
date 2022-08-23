@@ -1,14 +1,6 @@
 # AWS EKS and Rancher
 * How-to publication date: November 2021
-* How-to update: August 2022
-
-<bl >
-
-        Rancher Version: v2.6.2 ???
-
-        AWS EKS Version: 1.20.7 ????
-
-        Nginx Version: 1.19.4 ????
+* How-to last update: August 2022
 
 <bl >
 
@@ -28,9 +20,11 @@
 
 ## Tests
 
+This how-to allows you to deploy the latest version of all products and services. You just need to read it carefully :)
+
 * All tests have been run in the AWS sa-east-1 region
-* Rancher Version: v2.6.2
-* AWS EKS Version: 1.20.7
+* Rancher Version: v2.6.7
+* AWS EKS Version: 1.22.10
 * Nginx Version: 1.19.4
 
 ## Considerations
@@ -57,8 +51,8 @@
 
     https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/
 
-2. Take note of the EKS Highest Version Validated/certified (In the image below the version is 1.20.x)
-    * Obs.: You only need to use the first two numbers in the yaml cluster config file
+2. Take note of the EKS Highest Version Validated/certified (Ex.: In the image below the version is 1.20.x)
+    * Obs.: You only need to use the first two numbers in the yaml cluster config file (Ex.: 1.20)
 
 ![image](https://github.com/fabbriciocruz/kubernetes/blob/eadd8dd0d290365e149fdb238904002ee902e190/Amazon_EKS/Documentation_Images/Rancher_Hosted_Kubernetes_Version.png)
 
