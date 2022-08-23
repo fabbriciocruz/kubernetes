@@ -105,6 +105,7 @@ aws configure get default.region
 !
 
 # Set the CMK's name and Create a CMK for the EKS cluster to use when encrypting your Kubernetes secrets:
+# Take note of the CMK's arn (You'll need that when configuring the EKS cluster manifest yaml file)
 !
 CMK_NAME="<CMK_NAME>"
 !

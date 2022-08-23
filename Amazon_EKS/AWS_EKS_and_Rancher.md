@@ -82,7 +82,7 @@ This how-to allows you to deploy the latest version of all products and services
 * Obs.: From the Rancher documentation we're following the option "Deploy Rancher into an existing VPC and a new Amazon EKS cluster"
 
 1. Create the EKS Cluster
-    * Edit the [manifest yaml file](https://github.com/fabbriciocruz/kubernetes/blob/eadd8dd0d290365e149fdb238904002ee902e190/Amazon_EKS/Config_Files/clusterConfig_EksRancherInss_NodeGroupSpotInstance.yaml) as you need and apply the configuration
+    * Edit the [EKS Cluster manifest yaml file](https://github.com/fabbriciocruz/kubernetes/blob/eadd8dd0d290365e149fdb238904002ee902e190/Amazon_EKS/Config_Files/clusterConfig_EksRancherInss_NodeGroupSpotInstance.yaml) as you need and apply the configuration
         ```sh
         eksctl create cluster -f <FILE_NAME>
         ```
