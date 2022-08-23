@@ -93,7 +93,13 @@ This how-to allows you to deploy the latest version of all products and services
 
 2. Import your AWS Console credentials to your new cluster
 
-    * Add the IAM role you have assumed when logged in to the AWS Console as an EKS cluster admin (Replace <MY_IAM_ROLE_NAME> by the name of the IAM role you've assumed when logged in)
+    * Get the IAM role you have assumed when logged into AWS Console
+        * Open the AWS CloudSHell and run the following command
+            ```sh
+            aws sts get-caller-id
+            ```
+
+    * Set the IAM role as an EKS cluster admin (Replace <MY_IAM_ROLE_NAME> by the name of the IAM role)
         ```sh
         export <MY_IAM_ROLE_NAME>=$(aws iam get-role --role-name <MyIamRole> --query Role.Arn --output text)
         ```

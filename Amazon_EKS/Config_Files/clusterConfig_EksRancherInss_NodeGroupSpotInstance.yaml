@@ -3,7 +3,7 @@ apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
-  name: <EKS_CLUSTER_NAME>
+  name: <EKS_CLUSTER_NAME> # Name must satisfy regular expression pattern: [a-zA-Z][-a-zA-Z0-9]*
   region: sa-east-1
   version: "<VERSION>"
 
@@ -25,6 +25,7 @@ managedNodeGroups:
 - name: <NODEGROUP_NAME>
   desiredCapacity: 2
 # Using spot instances and selecting ec2 instance types (If are going to deploy on-demand ec2 instances then comment the lines above and uncomment the session "On-demand ec2 instances")
+# Do not use spot instances on production environments
   spot: true
   instanceTypes: 
   - t3.small
@@ -40,7 +41,7 @@ managedNodeGroups:
   privateNetworking: true # if only 'Private' subnets are given, this must be enabled
 
 
-# To enable all of the control plane logs, uncomment below:
+# To enable all of the control plane logs
 cloudWatch:
   clusterLogging:
     enableTypes: ["*"]
