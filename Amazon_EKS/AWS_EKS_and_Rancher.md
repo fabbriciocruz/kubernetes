@@ -124,6 +124,7 @@ This how-to allows you to deploy the latest version of all products and services
     curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
     chmod 700 get_helm.sh
     ./get_helm.sh
+    DESIRED_VERSION=v3.8.2 bash get_helm.sh
     ```
     * Check the Helm version
         ```sh
@@ -143,7 +144,7 @@ This how-to allows you to deploy the latest version of all products and services
         ingress-nginx ingress-nginx/ingress-nginx \
         --namespace ingress-nginx \
         --set controller.service.type=LoadBalancer \
-        --version 3.12.0 \
+        --version 4.0.18 \
         --create-namespace
         ```
 
@@ -179,7 +180,7 @@ This how-to allows you to deploy the latest version of all products and services
                 * Upgrade your CRD resources before upgrading the Helm chart:
 
                     ```sh
-                    kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.5.1/cert-manager.crds.yaml
+                    kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.7.1/cert-manager.crds.yaml
                     ```
 
                 * Add the Jetstack Helm repository
@@ -197,7 +198,7 @@ This how-to allows you to deploy the latest version of all products and services
                     helm install cert-manager jetstack/cert-manager \
                     --namespace cert-manager \
                     --create-namespace \
-                    --version v1.5.1
+                    --version v1.7.1
                     ```
                 * Verify cert-manager is deployed correctly
                     ```sh
@@ -209,7 +210,9 @@ This how-to allows you to deploy the latest version of all products and services
     ```sh
     helm install rancher rancher-stable/rancher \
     --namespace cattle-system \
-    --set hostname=<FQDN_FOR_YOUR_RANCHER_SERVER>
+    --set hostname=<FQDN_FOR_YOUR_RANCHER_SERVER> \
+    --set bootstrapPassword=admin \
+    --set ingress.ingressClassName=nginx
     ```
 
     Verify that the Rancher server is successfully deployed
