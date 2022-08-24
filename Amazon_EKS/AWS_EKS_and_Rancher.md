@@ -297,7 +297,7 @@ This how-to allows you to deploy the latest version of all products and services
                 --cidr $cidr_range
             ```
 
-    4. Create an Amazon EFS file system for your Amazon EKS cluster
+    4. Create an Amazon EFS file system for your Amazon EKS cluster (Replance the value <AWS_REGION>)
 
         * Create a file system
 
