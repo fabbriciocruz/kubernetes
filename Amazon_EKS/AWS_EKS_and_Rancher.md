@@ -388,18 +388,24 @@ This how-to allows you to deploy the latest version of all products and services
     * Click Certificates
         * Add Certificate
         * Certificate - Secret Name: Default Ingress Controller Certificate
-        * Write the application FQDN in the box    
+        * Write the application FQDN in the box
+    * Click Ingress Class
+        * Select "nginx" in the "Ingress Class" box    
     * Click Create
 
 <bl >
 
-8. Test the application
+8. Add the application FQDN to your DNS server
+
+<bl >
+
+9. Test the application
 
     * Open a browser and type the FQDN for you application
 
 <bl >
 
-9. Test the EFS access
+10. Test the EFS access
 
     * Go back to the terminal
 
@@ -440,6 +446,8 @@ This how-to allows you to deploy the latest version of all products and services
 3. Delete the Cloud9 environment
 
 4. Delete the AWS EFS file system
+
+5. Delete the DNS registries created along this how-to
 
 ### Further Tests for EFS 
 1. Deploy the EFS CSI Driver (AWS Documentation)
