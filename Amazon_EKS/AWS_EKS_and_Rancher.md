@@ -1,6 +1,6 @@
 # AWS EKS and Rancher
-* How-to publication date: November 2021
-* How-to last update: August 2022
+* Publication date: November 2021
+* Last update: August 2022
 
 <bl >
 
