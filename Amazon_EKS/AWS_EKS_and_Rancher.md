@@ -96,7 +96,7 @@ This how-to allows you to deploy the latest version of all products and services
     * Get the IAM role you have assumed when logged into AWS Console
         * Open the AWS CloudSHell and run the following command
             ```sh
-            aws sts get-caller-id
+            aws sts get-caller-identity
             ```
 
     * Set the IAM role as an EKS cluster admin (Replace <MY_IAM_ROLE_NAME> by the name of the IAM role - The role's name must not have ".")
