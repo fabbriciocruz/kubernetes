@@ -136,6 +136,7 @@ This how-to allows you to deploy the latest version of all products and services
     * The cluster needs an Ingress so that Rancher can be accessed from outside the cluster.
     * The following command installs an nginx-ingress-controller with a LoadBalancer service.    
     * This will result in an AWS ELB (Classic) in front of NGINX:
+    * The following command comes from the [Rancher 2.6 documentation](https://docs.ranchermanager.rancher.io/getting-started/installation-and-upgrade/install-upgrade-on-a-kubernetes-cluster/rancher-on-amazon-eks#5-install-an-ingress)
 
         ```sh
         helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
