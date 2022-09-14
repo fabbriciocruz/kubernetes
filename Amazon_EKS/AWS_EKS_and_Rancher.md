@@ -357,6 +357,7 @@ This how-to allows you to deploy the latest version of all products and services
 6. Deploying a Workload 
     * Click "Workloads > Deployments > Create"
     * Select the new created Namespace
+    * Go to the 'Containers' tab
     * Name: test-01
     * Replicas: 2
     * Container Image: rancher/hello-world
@@ -365,7 +366,7 @@ This how-to allows you to deploy the latest version of all products and services
         * Name: test-01-service
         * Private Container Port: 80
         * Protocol: TCP
-    * Go to Storage
+    * Go to the 'Pod' tab and then click on Storage
         * Add Volume > NFS
             * Path: /subdir_test
             * Server: <EFS_ID>.efs.<AWS_REGION>.amazonaws.com
